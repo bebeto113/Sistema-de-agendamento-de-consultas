@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title> LumerBooth - Login </title>
+</head>
+
+<body>
+
+    <section class="container">
+
+        <div class="logo">
+            <h1>LumerBooth</h1>
+        </div>
+
+        <form class="form-login" id="form-login">
+
+            <div>
+                <h2>Entre na sua conta</h2>
+                <p>Bem-vindo de volta!</p>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="Seu email" name="email">
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Sua senha">
+            </div>
+
+            <div class="btn-login" id="btnLogin">
+                <button type="submit" id="btn"> Entrar </button>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+                <p><a href="#" id="forgotPasswordLink">Esqueceu a senha?</a></p>
+            </div>
+        </form>
+
+    </section>
+</body>
+<!--date-fns-->
+<script src="https://cdn.jsdelivr.net/npm/date-fns@2.30.0/index.min.js"></script>
+<!--toastify-js-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!--sweetalert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--Utils.js-->
+<script src="js/utils.js"></script>
+<!--login.js-->
+<script src="js/login.js"></script>
+
+</html>

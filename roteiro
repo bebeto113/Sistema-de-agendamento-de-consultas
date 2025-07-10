@@ -1,0 +1,197 @@
+Com certeza! Entendido perfeitamente. Vamos refazer o roteiro para incluir todos esses pontos cruciais que garantirão um sistema completo e de alta qualidade.
+
+O foco em performance, a estilização completa e a construção conjunta do JavaScript são as nossas premissas.
+
+---
+
+## Roteiro Detalhado: Sistema de Agendamento (Completo)
+
+Este roteiro abrangerá todas as etapas, desde a configuração inicial até as funcionalidades avançadas, dividindo-se nas áreas do Cliente e do Proprietário.
+
+---
+
+### Etapas Globais (Configuração e Compartilhamento)
+
+Estas etapas são a base do nosso projeto e se aplicam a ambas as áreas (Cliente e Proprietário).
+
+1.  **Criação da Estrutura de Pastas:**
+    * Organizar as pastas de forma lógica para comportar todas as partes do sistema.
+    * **Ação:** Criar uma pasta raiz (ex: `sistema-agendamento`). Dentro dela, criar:
+        * `css/` (para estilos globais e específicos de cada área)
+        * `js/` (para scripts de utilidades e específicos de cada área)
+        * `pages/` (para as páginas HTML de Cliente e Proprietário)
+        * `img/` (se for usar imagens)
+        * Um arquivo `index.html` na raiz (para a simulação de login/página inicial).
+
+2.  **Criação dos Arquivos Essenciais Compartilhados:**
+    * Preparar os arquivos que serão utilizados por ambas as áreas.
+    * **Ação:**
+        * Dentro de `css/`: criar `global.css`.
+        * Dentro de `js/`: criar `utils.js`.
+        * Na raiz do projeto: criar `index.html`.
+
+3.  **Instalação e Configuração das Bibliotecas Extras (CDNs):**
+    * Incluir as bibliotecas que darão funcionalidades avançadas ao nosso sistema.
+    * **Ação:** Adicionar as tags `<script>` e `<link>` das CDNs de `date-fns` (ou `Luxon`), `Toastify-JS` (ou `SweetAlert2`) em **todos os arquivos HTML** (`index.html`, `cliente.html`, `proprietario.html`).
+
+4.  **Lógica JavaScript Compartilhada (`utils.js`):**
+    * Este arquivo conterá funções reutilizáveis para garantir consistência e performance.
+    * **Ação:** Juntos, vamos implementar as funções para:
+        * **Gerenciamento do `localStorage`:** Funções para carregar e salvar dados de agendamentos.
+        * **Geração de ID Único:** Uma função robusta para criar identificadores exclusivos para cada agendamento.
+        * **Utilitários de Data/Hora (com `date-fns`):** Funções para formatação de datas, comparação de horários e verificação de conflitos de agendamento.
+        * **Função de Notificação (com `Toastify-JS`):** Uma função padronizada para exibir mensagens de sucesso, erro e alerta.
+        * **Função de Confirmação (com `SweetAlert2` ou `confirm()`):** Uma função para solicitar confirmação do usuário antes de ações críticas.
+
+---
+
+## Roteiro Detalhado: Área do Cliente
+
+Este roteiro guiará a construção da interface e da lógica para o usuário final, permitindo que ele agende e visualize suas próprias consultas.
+
+### Etapa 1: Estrutura HTML para o Cliente (`cliente.html`)
+
+Você criará o esqueleto da página do cliente.
+
+1.  **Criação do Arquivo HTML:**
+    * **Ação:** Dentro de `pages/`, crie `cliente.html`.
+2.  **Vinculação dos Arquivos:**
+    * **Ação:** Em `cliente.html`, conecte `global.css`, `cliente.css`, e os scripts das bibliotecas, seguido por `utils.js` e `cliente.js`.
+3.  **Conteúdo HTML:**
+    * **Ação:** Estruture seu `cliente.html` com:
+        * Um cabeçalho claro.
+        * Um formulário completo para agendar novas consultas (campos para nome, data, hora, tipo de consulta, botão de agendar).
+        * Uma seção para exibir "Minhas Consultas" (pode ser uma tabela ou cards), com colunas para data, hora, tipo e ações (ex: cancelar).
+        * Um rodapé.
+        * **Importante:** Dê `id`s claros aos elementos que serão manipulados com JavaScript.
+
+### Etapa 2: Estilização com CSS para o Cliente (`cliente.css`)
+
+Eu vou sugerir a organização e você fará a implementação da estilização.
+
+1.  **Criação do Arquivo CSS:**
+    * **Ação:** Dentro de `css/`, crie `cliente.css`.
+2.  **Estilos Específicos do Cliente:**
+    * **Ação:** Aplique estilos para:
+        * O layout geral da página do cliente (cabeçalho, seções, rodapé).
+        * O formulário de agendamento (inputs, labels, botões).
+        * A exibição da lista de "Minhas Consultas" (tabela ou cards), incluindo estilos para status de "Consulta Realizada".
+        * **Responsividade:** Garanta que a página se adapte bem a diferentes tamanhos de tela, especialmente a tabela de agendamentos.
+        * **Feedback Visual:** Estilize as notificações do `Toastify-JS` para que combinem com o design.
+        * **Indicadores Visuais:** Se optarmos por eles, estilize pequenos indicadores de carregamento/processamento para os botões.
+
+### Etapa 3: Lógica com JavaScript para o Cliente (`cliente.js`)
+
+Faremos toda a codificação JavaScript juntos, passo a passo, com foco em performance.
+
+1.  **Criação do Arquivo JS:**
+    * **Ação:** Dentro de `js/`, crie `cliente.js`.
+2.  **Inicialização e Carregamento de Dados:**
+    * **Ação:** Carregar os agendamentos existentes do `localStorage` ao iniciar a página.
+3.  **Função `adicionarNovoAgendamento()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * Coletar valores dos campos do formulário.
+        * **Validação Detalhada:** Validar cada campo (preenchimento, formato, data no futuro).
+        * **Verificação de Conflito:** Usar `utils.js` para checar se o horário já está ocupado.
+        * **Feedback de Validação:** Exibir mensagens de erro específicas usando a função de notificação.
+        * Adicionar o novo agendamento ao array e persistir no `localStorage`.
+        * Limpar o formulário.
+        * Atualizar a lista de consultas na tela.
+4.  **Função `listarMinhasConsultas()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * Filtrar os agendamentos para exibir apenas os do "cliente atual" (simulado).
+        * **Ordenação:** Ordenar os agendamentos por data e hora (do mais próximo ao mais distante).
+        * **Status "Realizada":** Verificar a data/hora atual e marcar agendamentos passados como "realizados".
+        * Renderizar os agendamentos na tabela/cards, aplicando estilos visuais para o status.
+        * Exibir mensagem "Nenhuma consulta agendada" se a lista estiver vazia.
+5.  **Função `cancelarAgendamento()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * **Confirmação:** Solicitar confirmação do usuário antes de prosseguir.
+        * Remover o agendamento específico do array.
+        * Atualizar o `localStorage` e a exibição na tela.
+        * Exibir notificação de sucesso/cancelamento.
+6.  **Event Listeners:**
+    * **Ação:** Conectar as interações do usuário (envio de formulário, cliques nos botões de cancelar) às funções JavaScript correspondentes.
+
+---
+
+## Roteiro Detalhado: Área do Proprietário
+
+Este roteiro focará na interface e na lógica para o proprietário, permitindo a visualização geral e o gerenciamento de todos os agendamentos.
+
+### Etapa 1: Estrutura HTML para o Proprietário (`proprietario.html`)
+
+Você construirá o layout para o painel administrativo.
+
+1.  **Criação do Arquivo HTML:**
+    * **Ação:** Dentro de `pages/`, crie `proprietario.html`.
+2.  **Vinculação dos Arquivos:**
+    * **Ação:** Em `proprietario.html`, conecte `global.css`, `proprietario.css`, e os scripts das bibliotecas, seguido por `utils.js` e `proprietario.js`.
+3.  **Conteúdo HTML:**
+    * **Ação:** Estruture seu `proprietario.html` com:
+        * Um cabeçalho para o painel do proprietário.
+        * Uma seção destacada para a "Próxima Consulta".
+        * Uma seção para "Todos os Agendamentos" com uma tabela completa.
+        * Inputs e controles para filtrar os agendamentos (por data, tipo, nome do paciente).
+        * Um rodapé.
+        * **Importante:** Dê `id`s claros aos elementos que serão manipulados com JavaScript.
+
+### Etapa 2: Estilização com CSS para o Proprietário (`proprietario.css`)
+
+Eu vou sugerir a organização e você fará a implementação da estilização.
+
+1.  **Criação do Arquivo CSS:**
+    * **Ação:** Dentro de `css/`, crie `proprietario.css`.
+2.  **Estilos Específicos do Proprietário:**
+    * **Ação:** Aplique estilos para:
+        * O layout geral do painel administrativo.
+        * O bloco da "Próxima Consulta" (destacado).
+        * A tabela de "Todos os Agendamentos", incluindo estilos para status de "Consulta Realizada".
+        * Os controles de filtro.
+        * **Responsividade:** Garanta que a página se adapte bem a diferentes tamanhos de tela, com foco na usabilidade das tabelas e filtros em dispositivos móveis.
+        * **Feedback Visual:** Estilize as notificações do `Toastify-JS` para que combinem com o design.
+        * **Indicadores Visuais:** Se optarmos por eles, estilize pequenos indicadores de carregamento/processamento.
+
+### Etapa 3: Lógica com JavaScript para o Proprietário (`proprietario.js`)
+
+Faremos toda a codificação JavaScript juntos, passo a passo, com foco em performance.
+
+1.  **Criação do Arquivo JS:**
+    * **Ação:** Dentro de `js/`, crie `proprietario.js`.
+2.  **Inicialização e Carregamento de Dados:**
+    * **Ação:** Carregar todos os agendamentos existentes do `localStorage` ao iniciar a página.
+3.  **Função `exibirProximaConsulta()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * Encontrar o agendamento mais próximo no futuro (usando `date-fns` para ordenação e comparação).
+        * Preencher os elementos HTML na seção "Próxima Consulta" com os dados encontrados.
+        * Exibir uma mensagem caso não haja consultas futuras.
+4.  **Função `listarTodosAgendamentos()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * Aplicar filtros dinamicamente (por data, tipo, nome do paciente).
+        * **Ordenação:** Ordenar os agendamentos filtrados por data e hora.
+        * **Status "Realizada":** Verificar a data/hora atual e marcar agendamentos passados como "realizados".
+        * Renderizar todos os agendamentos na tabela, aplicando estilos visuais para o status.
+        * Exibir mensagem "Nenhum agendamento encontrado" se a lista filtrada estiver vazia.
+5.  **Função `manipularAgendamento()`:**
+    * **Ação:** Juntos, vamos implementar a lógica para:
+        * Lidar com ações como exclusão de agendamentos.
+        * **Confirmação:** Solicitar confirmação do usuário antes de prosseguir com ações críticas.
+        * Atualizar o `localStorage` e a exibição na tela.
+        * Exibir notificação de sucesso/erro.
+6.  **Event Listeners:**
+    * **Ação:** Conectar as interações do usuário (alteração de filtros, cliques em botões de ação) às funções JavaScript correspondentes.
+
+---
+
+### Etapa Final: Hospedagem e GitHub
+
+1.  **Publicação no GitHub Pages ou Vercel:**
+    * **Ação:** Configurar o repositório para que todas as páginas (`index.html`, `cliente.html`, `proprietario.html`) e seus recursos sejam acessíveis online.
+2.  **Criação/Atualização do `README.md`:**
+    * **Ação:** Documentar o projeto de forma profissional, descrevendo as duas interfaces distintas, suas funcionalidades, as tecnologias utilizadas e como rodar/acessar cada parte do sistema.
+
+---
+
+Este roteiro é o nosso mapa completo. Ele abrange tudo o que discutimos e nos guiará de forma clara.
+
+Quando estiver pronto para começar a **Etapa Global 1: Criação da Estrutura de Pastas**, me avise!

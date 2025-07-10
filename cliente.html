@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Cliente - LumerBooth</title>
+    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Painel do Cliente</h1>
+            <div class="user-profile">
+                <span>Bem-vinda, Maria!</span>
+                <img src="https://i.pravatar.cc/40?img=25" alt="Foto do Cliente">
+            </div>
+
+            <aside class="sidebar" id="profileSidebar">
+                <div class="sidebar-header">
+                    <img src="https://i.pravatar.cc/40?img=25" alt="Foto de Perfil" class="profile-pic">
+                    <h4>Maria</h4>
+                    <button class="close-sidebar-btn">&times;</button>
+                </div>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="#" class="sidebar-option" data-option="my-events">Meus Eventos</a></li>
+                    </ul>
+
+                    <button class="logout-btn" id="logout-btn">Logout</button>
+                </nav>
+            </aside>
+
+        </header>
+
+        <main class="dashboard-content">
+            <aside class="sidebar-left">
+                <h2>Selecione o Dentista</h2>
+                <ul class="dentist-list">
+                    <li class="dentist-card active">
+                        <img src="https://i.pravatar.cc/50?img=1" alt="Dra. Ana">
+                        <div class="dentist-info">
+                            <h3>Dra. Ana Souza</h3>
+                            <p>Clínico Geral</p>
+                        </div>
+                    </li>
+                    <li class="dentist-card">
+                        <img src="https://i.pravatar.cc/50?img=2" alt="Dr. Bruno">
+                        <div class="dentist-info">
+                            <h3>Dr. Bruno Lima</h3>
+                            <p>Ortodontista</p>
+                        </div>
+                    </li>
+                    <li class="dentist-card">
+                        <img src="https://i.pravatar.cc/50?img=3" alt="Dra. Carla">
+                        <div class="dentist-info">
+                            <h3>Dra. Carla Dias</h3>
+                            <p>Implantodontista</p>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+
+            <section class="main-content">
+                <h2>Agendamentos</h2>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button>&lt;</button>
+                        <h3>Julho 2025</h3>
+                        <button>&gt;</button>
+                    </div>
+                    <div class="weekdays">
+                        <div>Dom</div>
+                        <div>Seg</div>
+                        <div>Ter</div>
+                        <div>Qua</div>
+                        <div>Qui</div>
+                        <div>Sex</div>
+                        <div>Sáb</div>
+                    </div>
+                    <div class="days">
+                        <div class="other-month">30</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div class="booked">3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div class="selected">9</div>
+                        <div>10</div>
+                        <div class="booked">11</div>
+                        <div>12</div>
+                        <div>13</div>
+                        <div>14</div>
+                        <div>15</div>
+                        <div>16</div>
+                        <div>17</div>
+                        <div>18</div>
+                        <div>19</div>
+                        <div>20</div>
+                        <div>21</div>
+                        <div class="booked">22</div>
+                        <div>23</div>
+                        <div>24</div>
+                        <div>25</div>
+                        <div>26</div>
+                        <div>27</div>
+                        <div>28</div>
+                        <div>29</div>
+                        <div>30</div>
+                        <div>31</div>
+                        <div class="other-month">1</div>
+                        <div class="other-month">2</div>
+                        <div class="other-month">3</div>
+                    </div>
+                </div>
+                <div class="calendar-legend">
+                    <div><span class="legend-dot booked-dot"></span>Ocupado</div>
+                    <div><span class="legend-dot selected-dot"></span>Selecionado</div>
+                </div>
+                <button class="btn btn-primary" id="btnAgendarNovoEvento">Agendar Consulta</button>
+            </section>
+
+            <aside class="sidebar-right">
+                <h2>Próximas Consultas</h2>
+                <div class="appointment-list scrollable-box">
+                    
+                </div>
+
+                <h2 id="horariosDisponiveis" >Horários Disponíveis</h2>
+                <div class="available-slots scrollable-box">
+                    
+                </div>
+            </aside>
+        </main>
+    </div>
+
+
+    <div class="modal-overlay" id="bookingModalOverlay">
+
+        <div class="booking-modal" id="bookingModal">
+            <div class="modal-header">
+                <h2>Configurar Agendamento</h2>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Dentista Selecionado</h3>
+                    <p id="modalDentistName">Nenhum dentista selecionado</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Data da Consulta</h3>
+                    <input type="date" id="modalBookingDate" class="modal-input data">
+                </div>
+
+                <div class="modal-section">
+                    <h3>Horário da Consulta</h3>
+                    <select id="modalBookingTime" class="modal-input">
+                        <option value="">Selecione um horário</option>
+                    </select>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Tipo de Serviço</h3>
+                    <input type="text" id="modalServiceType" class="modal-input"
+                        placeholder="Ex: Limpeza, Extração, Avaliação">
+                </div>
+
+                <div class="modal-section">
+                    <h3>Observações (Opcional)</h3>
+                    <textarea id="modalNotes" class="modal-input" rows="3"
+                        placeholder="Qualquer informação adicional..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-secondary cancel-booking-btn">Cancelar</button>
+                    <button class="btn btn-primary confirm-booking-btn">Confirmar Agendamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<!--Utils.js-->
+<script src="js/utils.js"></script>
+
+<script src="js/cliente.js"></script>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumerBooth - Cadastro </title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+
+    <section class="container">
+
+        <div class="logo">
+            <h1>LumerBooth</h1>
+        </div>
+
+        <form class="form-cadastro" id="form-cadastro">
+
+            <div>
+                <h2>Crie sua conta</h2>
+                <p>vai demorar 5 minutinhos</p>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="name" name="name" class="concluido" placeholder="Seu nome" >
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="emailInput" class="concluido" placeholder="Seu email" name="email" >
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" class="concluido" placeholder="Sua senha" >
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" class="concluido" placeholder="Confirme sua senha"
+                    >
+            </div>
+
+            <div class="input-group">
+                <label id="sou" for="role">Sou:</label>
+                <select id="role" class="concluido" name="role" >
+                    <option value="">Selecione...</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="proprietario">Proprietário</option>
+                </select>
+            </div>
+
+            <div class="btn-cadastro" id="btnCadastro">
+                <button type="submit" id="btn"> Cadastrar </button>
+                <p>já possui <a href="login.html">Login</a>?</p>
+            </div>
+        </form>
+
+    </section>
+
+</body>
+<!--date-fns-->
+<script src="https://cdn.jsdelivr.net/npm/date-fns@2.30.0/index.min.js"></script>
+<!--toastify-js-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!--sweetalert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--Utils.js-->
+<script src="js/utils.js"></script>
+<!--cadastro.js-->
+<script src="js/cadastro.js"></script>
+
+</html>
