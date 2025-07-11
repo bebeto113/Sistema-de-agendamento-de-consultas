@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-   
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -32,7 +32,8 @@
                 </div>
                 <nav class="sidebar-nav">
                     <ul>
-                        <li><a href="#" class="sidebar-option" data-option="my-events">Meus Eventos</a></li>
+                        <li><a href="#" class="sidebar-option" id="myEvents" data-option="my-events">Meus Eventos</a>
+                        </li>
                     </ul>
 
                     <button class="logout-btn" id="logout-btn">Logout</button>
@@ -74,7 +75,7 @@
                 <div class="calendar">
                     <div class="calendar-header">
                         <button>&lt;</button>
-                        <h3>Julho 2025</h3>
+                        <h3></h3>
                         <button>&gt;</button>
                     </div>
                     <div class="weekdays">
@@ -134,12 +135,12 @@
             <aside class="sidebar-right">
                 <h2>Próximas Consultas</h2>
                 <div class="appointment-list scrollable-box">
-                    
+
                 </div>
 
-                <h2 id="horariosDisponiveis" >Horários Disponíveis</h2>
+                <h2 id="horariosDisponiveis">Horários Disponíveis</h2>
                 <div class="available-slots scrollable-box">
-                    
+
                 </div>
             </aside>
         </main>
@@ -154,10 +155,6 @@
                 <button class="close-modal-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Dentista Selecionado</h3>
-                    <p id="modalDentistName">Nenhum dentista selecionado</p>
-                </div>
 
                 <div class="modal-section">
                     <h3>Data da Consulta</h3>
@@ -190,6 +187,20 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-overlay" id="meusEventosOverlay">
+        <div class="modal" id="meusEventosModal">
+            <div class="modal-header">
+                <h2>Meus Eventos</h2>
+                <button class="close-modal-btn" id="fecharMeusEventos">&times;</button>
+            </div>
+
+            <div class="modal-body meusEventosJs" id="meusEventosJs">
+    
+            </div>
+        </div>
+    </div>
+
 
 </body>
 <!--Utils.js-->

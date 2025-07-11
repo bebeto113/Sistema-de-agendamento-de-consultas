@@ -1,4 +1,9 @@
+const AGENDAMENTOS_MOCK_DATA = [
+
+];
+
 function carregarAgendamentos() {
+
     try {
         const agendamentosJSON = localStorage.getItem('agendamentos');
         if (agendamentosJSON) {
@@ -25,15 +30,6 @@ function salvarAgendamentos(agendamentos) {
         console.error('Erro ao salvar agendamentos no localStorage:', error);
     }
 }
-
-const AGENDAMENTOS_MOCK_DATA = [
-    { id: gerarUUID(), clienteId: 'cliente3', data: '2025-07-09', hora: '14:00', servico: 'Extração', status: 'confirmada' },
-    { id: gerarUUID(), clienteId: 'cliente4', data: '2025-07-11', hora: '09:00', servico: 'Restauração', status: 'confirmada' },
-    { id: gerarUUID(), clienteId: 'cliente5', data: '2025-07-09', hora: '10:30', servico: 'Avaliação Geral', status: 'confirmada' },
-    { id: gerarUUID(), clienteId: 'cliente6', data: '2025-07-15', hora: '16:00', servico: 'Limpeza', status: 'confirmada' },
-    { id: gerarUUID(), clienteId: 'cliente7', data: '2025-07-11', hora: '14:00', servico: 'Consulta Rotina', status: 'confirmada' },
-    { id: gerarUUID(), clienteId: 'cliente1', data: '2025-08-01', hora: '10:00', servico: 'Check-up', status: 'confirmada' }
-];
 
 function gerarUUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -202,10 +198,6 @@ function salvarUsuarioLogado(usuario) {
 function carregarUsuarioLogado() {
     const usuarioJson = sessionStorage.getItem('usuarioLogado');
     return usuarioJson ? JSON.parse(usuarioJson) : null;
-}
-
-function removerUsuarioLogado() {
-    sessionStorage.removeItem('usuarioLogado');
 }
 
 // Função para formatar Date para "YYYY-MM-DD" ➡️

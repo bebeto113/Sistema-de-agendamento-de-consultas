@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!loggedInUser) {
         mostrarNotificacao('Você precisa estar logado para acessar esta página.', 'error')
-        redirecionar('login.html') // Certifique-se de que 'login.html' é o caminho correto para sua página de login
-        return // Impede que o restante do script seja executado
+        redirecionar('login.html')
+        return
     }
 
     const telaAgendamento = document.getElementById('bookingModal')
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const observacoesAgendamento = observacoes.value
 
         if (!dataAgendamento || !horaAgendamento || !tipoServicoAgendamento) {
-            mostrarNotificacao('Por favor, preencha todos os campos obrigatórios (Data, Horário, Tipo de Serviço).', 'error')
+            mostrarNotificacao('Por favor, preencha todos os campos obrigatórios (Data, Horário e Tipo de Serviço).', 'error')
             return
         }
 
@@ -164,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentCalendarDate = new Date() //guarda uma data completa (ano, mes, dia, etc)
 
-    const diasContainer = document.querySelector('.days')
     const calendarioCabecalho = document.querySelector('.calendar-header h3')
     const btnMesAnterior = document.querySelector('.calendar-header button:first-child')
     const btnMesProximo = document.querySelector('.calendar-header button:last-child')
@@ -240,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function atualizarHorariosDisponiveis(data) {
-        
+
         const containerSlots = document.querySelector('.available-slots')
         containerSlots.innerHTML = '' // Limpa os horários anteriores
 
@@ -262,30 +261,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             btnAgendar.addEventListener('click', () => {
 
-            document.getElementById('bookingModal').classList.add('active')
-            document.getElementById('bookingModalOverlay').classList.add('active')
+                document.getElementById('bookingModal').classList.add('active')
+                document.getElementById('bookingModalOverlay').classList.add('active')
 
-            // Preencher data no input
-            const inputData = document.getElementById('modalBookingDate')
-            const horarioSelect = document.getElementById('modalBookingTime')
-            const tipoServico = document.getElementById('modalServiceType')
-            const observacoes = document.getElementById('modalNotes')
+                // Preencher data no input
+                const inputData = document.getElementById('modalBookingDate')
+                const horarioSelect = document.getElementById('modalBookingTime')
+                const tipoServico = document.getElementById('modalServiceType')
+                const observacoes = document.getElementById('modalNotes')
 
-            // Formata a data para yyyy-mm-dd
-            const yyyy = data.getFullYear()
-            const mm = String(data.getMonth() + 1).padStart(2, '0')
-            const dd = String(data.getDate()).padStart(2, '0')
-            inputData.value = `${yyyy}-${mm}-${dd}`
+                // Formata a data para yyyy-mm-dd
+                const yyyy = data.getFullYear()
+                const mm = String(data.getMonth() + 1).padStart(2, '0')
+                const dd = String(data.getDate()).padStart(2, '0')
+                inputData.value = `${yyyy}-${mm}-${dd}`
 
-            inputData.dispatchEvent(new Event('change'))
+                inputData.dispatchEvent(new Event('change'))
 
-            setTimeout(() => {
-                horarioSelect.value = hora
-            }, 10)
+                setTimeout(() => {
+                    horarioSelect.value = hora
+                }, 10)
 
-            tipoServico.value = ''
-            observacoes.value = ''
-                
+                tipoServico.value = ''
+                observacoes.value = ''
+
             })
 
             slotDiv.appendChild(btnAgendar)
@@ -293,50 +292,148 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-function mostrarProximasConsultas() {
-    
-    const containerNexts = document.querySelector('.appointment-list')
-    containerNexts.innerHTML = ''
+    function mostrarProximasConsultas() {
 
-    const proximasConsultas = carregarAgendamentosDoCliente(loggedInUser.id)
+        const meusEventos = document.querySelector('.appointment-list')
+        meusEventos.innerHTML = ''
 
-    if (proximasConsultas.length === 0) {
-        containerNexts.innerHTML = '<p>Nenhuma data agendada</p>'
-        return
-    }
+        const proximasConsultas = carregarAgendamentosDoCliente(loggedInUser.id)
 
-    proximasConsultas.sort((a, b) => {
-        const dataA = new Date(`${a.data}T${a.hora}`)
-        const dataB = new Date(`${b.data}T${b.hora}`)
-        return dataA - dataB
-    })
+        if (proximasConsultas.length === 0) {
+            meusEventos.innerHTML = '<p>Nenhuma data agendada</p>'
+            return
+        }
 
-    proximasConsultas.forEach(agendamento => {
-        const item = document.createElement('div')
-        item.classList.add('appointment-item')
+        proximasConsultas.sort((a, b) => {
+            const dataA = new Date(`${a.data}T${a.hora}`)
+            const dataB = new Date(`${b.data}T${b.hora}`)
+            return dataA - dataB
+        })
 
-        // Converte data para formato legível
-        const [ano, mes, dia] = agendamento.data.split('-')
-        const nomeMes = [
-            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-        ][parseInt(mes) - 1]
+        proximasConsultas.forEach(agendamento => {
+            const item = document.createElement('div')
+            item.classList.add('appointment-item')
 
-        const dataFormatada = `${parseInt(dia)} de ${nomeMes} de ${ano}`
+            // Converte data para formato legível
+            const [ano, mes, dia] = agendamento.data.split('-')
 
-        item.innerHTML = `
+            const nomeMes = [
+                'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            ][parseInt(mes) - 1]
+
+            const dataFormatada = `${parseInt(dia)} de ${nomeMes} de ${ano}`
+
+            item.innerHTML = `
             <p><strong>${dataFormatada}</strong><span>${agendamento.hora}</span></p>
             <p>${agendamento.servico}</p>
         `
 
-        containerNexts.appendChild(item)
+            meusEventos.appendChild(item)
+        })
+    }
+
+    ////LOGOUT/////
+
+    const btnLogout = document.getElementById('logout-btn')
+
+    btnLogout.addEventListener('click', removerUsuarioLogado)
+
+    function removerUsuarioLogado() {
+        sessionStorage.removeItem('usuarioLogado');
+
+        mostrarNotificacao('Logout realizado, redirecionando para página de Login','success')
+
+        setTimeout(() => {
+            redirecionar('login.html')
+        }, 1500);
+    }
+
+    ////MEUS EVENTOS/////
+
+    const btnMeusEventos = document.getElementById('myEvents')
+    const btnXFechar = document.getElementById('fecharMeusEventos')
+
+    const modalEventosOverlay = document.getElementById('meusEventosOverlay')
+    const meusEventos = document.getElementById('meusEventosJs')
+
+    btnMeusEventos.addEventListener('click', () => {
+        modalEventosOverlay.classList.add('active')
+        sideBar.classList.remove('open')
+
+        mostrarMeusEventos()
+
     })
-}
 
-    atualizarCalendario()
-    mostrarProximasConsultas()
+    btnXFechar.addEventListener('click', () => {
+        modalEventosOverlay.classList.remove('active')
+    })
 
+
+    function mostrarMeusEventos() {
+
+        const proximasConsultas = carregarAgendamentosDoCliente(loggedInUser.id)
+
+        if (proximasConsultas.length === 0) {
+            meusEventos.innerHTML = '<p>Nenhuma data agendada</p>'
+            return
+        }
+
+        proximasConsultas.sort((a, b) => {
+            const dataA = new Date(`${a.data}T${a.hora}`)
+            const dataB = new Date(`${b.data}T${b.hora}`)
+            return dataA - dataB
+        })
+
+        proximasConsultas.forEach(agendamento => {
+            const item = document.createElement('div')
+            item.classList.add('appointment-itemEventos')
+            item.dataset.id = agendamento.id
+
+
+            const [ano, mes, dia] = agendamento.data.split('-')
+
+            const nomeMes = [
+                'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            ][parseInt(mes) - 1]
+
+            const dataFormatada = `${parseInt(dia)} de ${nomeMes} de ${ano}`
+
+            item.innerHTML = 
+                `
+                    <p><strong>${dataFormatada}</strong><span>${agendamento.hora}</span></p>
+                    <p>${agendamento.servico} <button" class="desmarcarConsulta">Desmarcar</button></p>  
+                `
+
+            meusEventos.appendChild(item)
+        })
+    }
+
+    ////DESMARCAR CONSULTA//// 
+
+  meusEventos.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('desmarcarConsulta')) {
+        const card = e.target.closest('.appointment-itemEventos')
+        const idParaRemover = card.dataset.id
+
+        // Carrega todos os agendamentos do localStorage
+        const agendamentos = carregarAgendamentos()
+        
+        // Filtra removendo o agendamento com o ID correspondente
+        const novosAgendamentos = agendamentos.filter(ag => ag.id !== idParaRemover)
+
+        // Salva de volta no localStorage
+        salvarAgendamentos(novosAgendamentos)
+
+        // Remove da tela
+        card.remove()
+
+        mostrarNotificacao('Agendamento desmarcado com sucesso!', 'success')
+    }
 })
 
 
-
+    atualizarCalendario()
+    mostrarProximasConsultas()
+})

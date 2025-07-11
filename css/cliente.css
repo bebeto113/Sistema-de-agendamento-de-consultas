@@ -702,3 +702,116 @@ input[type="date"].modal-input {
     background-color: #f0f0f0;
     cursor: pointer;
 }
+
+
+/*MEUS EVENTOS*/
+
+/* Modal overlay (mesmo estilo dos outros) */
+#meusEventosOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Começa invisível */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#meusEventosOverlay.active {
+  display: flex;
+}
+
+/* Estilo principal do modal */
+#meusEventosModal {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  padding: 20px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Cabeçalho do modal */
+#meusEventosModal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+#meusEventosModal .modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+#meusEventosModal .close-modal-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #777;
+}
+
+#meusEventosModal .close-modal-btn:hover {
+  color: #000;
+}
+
+/* Corpo do modal */
+#meusEventosModal .modal-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Lista de eventos */   
+
+.appointment-itemEventos {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;    
+}
+
+.appointment-itemEventos p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.appointment-itemEventos p:last-child {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+
+.mensagem-vazia {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.desmarcarConsulta {
+    text-align: center;
+    padding: 4px 8px;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    width: 35%;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 8px;
+    transition-duration: 0.5s;
+}
+
+.desmarcarConsulta:hover {
+    transform: translateY(-2px);
+    background-color: rgb(243, 29, 29);
+}
