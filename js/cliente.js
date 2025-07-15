@@ -131,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const novoAgendamento = {
             id: gerarUUID(),
             clienteId: loggedInUser.id,
+            nome: loggedInUser.name,
             data: dataAgendamento,
             hora: horaAgendamento,
             servico: tipoServicoAgendamento,
