@@ -2,9 +2,9 @@ Claro! Aqui está uma versão mais organizada, decorada e profissional do seu te
 
 ---
 
-# 🦷 LumerBooth – Sistema de Agendamento Odontológico
+# 🦷 LumerMouth – Sistema de Agendamento Odontológico
 
-LumerBooth é uma aplicação web front-end que simula um sistema completo de agendamento de consultas para clínicas odontológicas. Desenvolvido com **HTML**, **CSS** e **JavaScript puro**, o projeto não depende de back-end, utilizando o **localStorage** para persistência de dados de usuários e agendamentos.
+LumerMouth é uma aplicação web front-end que simula um sistema completo de agendamento de consultas para clínicas odontológicas. Desenvolvido com **HTML**, **CSS** e **JavaScript puro**, o projeto não depende de back-end, utilizando o **localStorage** para persistência de dados de usuários e agendamentos.
 
 O sistema oferece dois painéis distintos com experiências personalizadas: um para **Clientes** e outro para **Proprietários**, proporcionando uma navegação intuitiva e segmentada.
 
